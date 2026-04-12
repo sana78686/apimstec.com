@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logos/apimstec-icon.svg" />
-    <link rel="shortcut icon" href="/logos/apimstec-icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logos/apimstec-icon.svg?v=0.0.0" />
+    <link rel="shortcut icon" href="/logos/apimstec-icon.svg?v=0.0.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Shell head: Vite env + optional extras (see .env.example). cms-seo-inject may override robots/meta for home. -->
+    <link rel="dns-prefetch" href="https://apimstec.com" />
+    <link rel="preconnect" href="https://apimstec.com" crossorigin />
+    <link rel="prefetch" href="/cms-prefetch.json" as="fetch" type="application/json" />
+    <link rel="preconnect" href="https://flagcdn.com" crossorigin />
+    <link rel="dns-prefetch" href="https://flagcdn.com" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- SEO: SPA shell; route-level meta from React. Build injects home meta from CMS when VITE_BUILD_SEO_LOCALE is set. -->
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Preconnect to CMS API (override with VITE_API_URL at build time if different) -->
-    <link rel="preconnect" href="https://portal.apimstec.com" crossorigin />
-    <link rel="dns-prefetch" href="https://portal.apimstec.com" />
-    <link rel="dns-prefetch" href="https://apimstec.com" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- Static fallbacks — overwritten at build time by cms-seo-inject plugin from CMS API,
-         and again at runtime by React SeoHead from CMS API for regular users. -->
-    <meta name="robots" content="index, follow" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ApimsTec" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>ApimsTec</title>
-    <script type="module" crossorigin src="/assets/index-W31Oyq47.js"></script>
+    <script type="module" crossorigin src="/assets/index-AHxZgTWs.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/vendor-BAk53hRD.js">
     <link rel="stylesheet" crossorigin href="/assets/index-Bmhg46YM.css">
-      <link rel="modulepreload" href="/assets/index-W31Oyq47.js" />
+      <link rel="modulepreload" href="/assets/index-AHxZgTWs.js" />
   </head>
   <body>
     <div id="root"></div>
