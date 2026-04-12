@@ -3,24 +3,38 @@
   SetEnv CMS_SEO_SYNC_SECRET "Seosyncsecret123@"
 </IfModule>
 
-# SPA fallback: deep links and client routing. Static files (JS, CSS, images) are served directly.
-# If robots.txt / sitemap.xml exist on disk (from `vite build` or CMS push), those files win.
+# SPA fallback with SEO prerender.
+# Static files (JS, CSS, images, fonts) are served directly by Apache.
+# Non-file requests go through seo-prerender.php so view-source and crawlers see CMS meta.
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
+  RewriteRule ^$ /seo-prerender.php [L]
+  RewriteRule ^index\.html$ /seo-prerender.php [L]
+
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteCond %{REQUEST_URI} !^/?$
+  RewriteCond %{REQUEST_URI} !^/index\.html$
+  RewriteRule . - [L]
+
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^robots\.txt$ /robots-cms.php [L]
-
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^sitemap\.xml$ /sitemap-cms.php [L]
 
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !^/?$
+  RewriteRule . - [L]
+
+  RewriteRule . /seo-prerender.php [L]
 </IfModule>
 
 Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteRule ^_seo_cache/ - [F,L]
+</IfModule>
 
 <IfModule mod_expires.c>
   ExpiresActive On

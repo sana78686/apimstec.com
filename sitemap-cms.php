@@ -8,7 +8,7 @@ declare(strict_types=1);
 $CMS_API_BASE = getenv('CMS_PUBLIC_API_BASE') ?: 'https://app.apimstec.com';
 $CMS_API_BASE = rtrim($CMS_API_BASE, '/');
 
-$host = $_SERVER['HTTP_HOST'] ?? 'compresspdf.id';
+$host = $_SERVER['HTTP_HOST'] ?? 'apimstec.com';
 $host = preg_replace('/:\d+$/', '', strtolower(trim((string) $host)));
 $host = preg_replace('/^www\./', '', $host);
 
@@ -19,7 +19,7 @@ $ctx = stream_context_create([
         'method' => 'GET',
         'timeout' => 12,
         'ignore_errors' => true,
-        'header' => "Accept: application/xml,text/xml,*/*\r\nUser-Agent: compresspdf-seo-proxy/sitemap\r\n",
+        'header' => "Accept: application/xml,text/xml,*/*\r\nUser-Agent: apimstec-seo-proxy/sitemap\r\n",
     ],
     'ssl' => ['verify_peer' => true, 'verify_peer_name' => true],
 ]);
