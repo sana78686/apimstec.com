@@ -52,6 +52,11 @@ if (preg_match('#^/en(?:/|$)#', $path)) {
     }
 }
 
+// Legacy PDF tool URL removed for corporate site — same prerender as home (canonical /).
+if (preg_match('#^/compress(?:/|$)#', $path)) {
+    $path = '/';
+}
+
 $locale = 'en';
 $routeSuffix = $path;
 
@@ -71,8 +76,6 @@ if (preg_match('#^/blog/([^/?]+)#', $routeSuffix, $m)) {
     $slug = urldecode($m[1]);
 } elseif (preg_match('#^/contact#', $routeSuffix)) {
     $routeType = 'contact';
-} elseif (preg_match('#^/compress#', $routeSuffix)) {
-    $routeType = 'home';
 } elseif (preg_match('#^/tools#', $routeSuffix)) {
     $routeType = 'tools';
 } elseif (preg_match('#^/(platform|marketplace|consultancy|solutions|insights|about)(/.*)?$#', $routeSuffix)) {
@@ -86,7 +89,7 @@ if ($routeType === null) {
         $routeType = 'home';
     } elseif (preg_match('#^/([a-z0-9-]+)/?$#', $routeSuffix, $m)) {
         $seg = $m[1];
-        $reserved = array('blog', 'page', 'legal', 'contact', 'compress', 'tools', 'en', 'platform', 'marketplace', 'consultancy', 'solutions', 'insights', 'about');
+        $reserved = array('blog', 'page', 'legal', 'contact', 'tools', 'en', 'platform', 'marketplace', 'consultancy', 'solutions', 'insights', 'about');
         if (!in_array($seg, $reserved, true)) {
             $routeType = 'tool-landing';
             $slug = $seg;
